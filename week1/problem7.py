@@ -11,7 +11,7 @@ Suppose you are told that the one time pad encryption of the message
 
 
 def str_to_int(s):
-    return int("".join([hex(ord(c))[2:] for c in s]), base=16)
+    return int(s.encode().hex(), base=16)
 
 
 key = str_to_int("attack at dawn") ^ 0x09e1c5f70a65ac519458e7e53f36

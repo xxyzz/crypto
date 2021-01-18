@@ -8,3 +8,8 @@
 
 # vmd
 *.temp
+
+# python env
+.env
+env
+.venv
