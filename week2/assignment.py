@@ -17,6 +17,8 @@ built-in AES functions, we ask that as a learning experience you implement
 CBC and CTR modes yourself.
 '''
 
+import os
+
 # dinosaurs with laser guns!
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
@@ -26,10 +28,6 @@ class AES():
         self.key = bytes.fromhex(key)
         self.mode = mode
         self.cipher = Cipher(algorithms.AES(self.key), modes.ECB())
-
-    def encrypt(self, pt, iv):
-        if self.mode == 'CBC':
-            pass
 
     def decrypt(self, ct):
         ct_bytes = bytes.fromhex(ct)[16:]
@@ -75,6 +73,23 @@ class AES():
                 pt += ''.join([chr(c) for c in pt_block_bytes])
         return pt
 
+    def encrypt(self, pt, iv):
+        pt_bytes = pt.encode('utf-8')
+        ct = ''
+        if self.mode == 'CBC':
+            pass
+        elif self.mode == 'CTR':
+            encryptor = self.cipher.encryptor()
+            iv = int(iv, 16)
+            ct += hex(iv)[2:]
+            for i in range(0, len(pt_bytes), 16):
+                pt_block = pt_bytes[i:i+16]
+                ct_block_bytes = [a ^ b for (a, b) in zip(
+                    pt_block, encryptor.update(
+                        bytes.fromhex(hex(iv+int(i/16))[2:]))[:len(pt_block)])]
+                ct += bytes(ct_block_bytes).hex()
+        return ct
+
 
 CBC_cts = (('140b41b22a29beb4061bda66b6747e14',
             '4ca00ff4c898d61e1edbf1800618fb2828a226d160dad07883d04e008a7897ee2'
@@ -96,3 +111,10 @@ CTR_cts = (('36f18357be4dbd77f050515c73fcf9f2',
 for (key, ct) in CTR_cts:
     aes = AES(key, 'CTR')
     print(aes.decrypt(ct))
+
+
+key = os.urandom(16).hex()
+iv = os.urandom(16).hex()
+message = 'Believe... I know it sounds like a cat poster but it\'s true.'
+aes = AES(key, 'CTR')
+assert(aes.decrypt(aes.encrypt(message, iv)) == message)
