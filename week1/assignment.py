@@ -37,7 +37,7 @@ for index, b in enumerate(ct_bytes_list[-1]):
             continue
         for c_byte in (string.ascii_letters + ' ').encode('ascii'):
             c = chr(b ^ ct_bytes[index] ^ c_byte)
-            if c not in (string.ascii_letters + ':, '):
+            if c not in string.ascii_letters + ':, ':
                 continue
             if c in possible_pts:
                 possible_pts[c] += 1

@@ -13,3 +13,6 @@
 .env
 env
 .venv
+
+# video
+*.mp4_download
