@@ -18,8 +18,9 @@ m0' = IV' ⊕ D(k, c0)
 '''
 
 iv = 0x20814804c1767293b99f1d9cab3bc3e7
-pad = b'1' + (16 - 1 - len(b'Pay Bob 100$')) * b'0'
-m0 = int((b'Pay Bob 100$' + pad).hex(), 16)
-new_m0 = int((b'Pay Bob 500$' + pad).hex(), 16)
+pad = 16 - len(b'Pay Bob 100$')
+pad = pad * pad.to_bytes(1, 'big')
+m0 = int.from_bytes(b'Pay Bob 100$' + pad, 'big')
+new_m0 = int.from_bytes(b'Pay Bob 500$' + pad, 'big')
 new_iv = iv ^ m0 ^ new_m0
 print(hex(new_iv) + 'ac1e37bfb15599e5f40eef805488281d')
