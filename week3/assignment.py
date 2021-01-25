@@ -6,9 +6,6 @@ h0<-------       -------        -------
           |     |       |      |       |
     ---------   |  ---------   | -------
     block0 h1 <--  block1 h2 <-- block 2
-
-https://crypto.stanford.edu/~dabo/onlineCrypto/6.1.intro.mp4_download
-https://crypto.stanford.edu/~dabo/onlineCrypto/6.2.birthday.mp4_download
 '''
 
 from pathlib import Path
