@@ -10,14 +10,9 @@ h = mpz(323947510405045044356526437872806578864909752095244952783479245297198197
 
 B = 2 ** 20
 
-table = {}
-
-for x1 in range(B):
-    table[divm(h, powmod(g, x1, p), p)] = x1
+table = {divm(h, powmod(g, x1, p), p): x1 for x1 in range(B)}
 
 for x0 in range(B):
-    right = powmod(g, B * x0, p)
-    if right in table:
-        x1 = table[right]
-        print(x0 * B + x1)
+    if (right := powmod(g, B * x0, p)) in table:
+        print(x0 * B + table[right])
         break
