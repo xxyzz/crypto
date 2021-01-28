@@ -10,6 +10,8 @@
 
 - Week 4: Authenticated Encryption
 
+- Week 5: Basic Key Exchange
+
 ## License
 
 This work is licensed under GPL version 3 or later.
