@@ -12,6 +12,8 @@
 
 - Week 5: Basic Key Exchange
 
+- Week 6: Public-Key Encryption
+
 ## License
 
 This work is licensed under GPL version 3 or later.
