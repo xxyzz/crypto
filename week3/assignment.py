@@ -13,7 +13,7 @@ from pathlib import Path
 from cryptography.hazmat.primitives import hashes
 
 video_path = Path('6.1.intro.mp4_download')
-ONE_KB = pow(2, 10)
+ONE_KB = 2 ** 10
 with video_path.open('rb') as f:
     previous_hash = b''
     for i in range(video_path.stat().st_size // ONE_KB, -1, -1):

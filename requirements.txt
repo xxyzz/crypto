@@ -1,10 +1,10 @@
 certifi==2020.12.5
 cffi==1.14.4
 chardet==4.0.0
-cryptography==3.3.1
+cryptography==3.4.4
 gmpy2==2.0.8
 idna==2.10
 pycparser==2.20
 requests==2.25.1
 six==1.15.0
-urllib3==1.26.2
+urllib3==1.26.3
